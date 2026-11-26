@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima de hoy</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="app-container">
+        <header class="app-header">
+            <div class="marca">☀</div>
+            <div class="texto-encabezado">
+                <p class="etiqueta">WEATHER DESK</p>
+                <h1>Clima de hoy</h1>
+                <p class="subtitle">Consulta las condiciones del tiempo en cualquier lugar.</p>
+            </div>
+        </header>
+
+        <section class="panel-busqueda">
+            <form id="search-form" class="search-bar">
+                <div class="campo-busqueda">
+                    <label for="location-input">Buscar ubicación</label>
+                    <input
+                        type="text"
+                        id="location-input"
+                        placeholder="Ej. Bogotá, Madrid..."
+                        aria-label="Ubicación"
+                        required
+                    >
+                </div>
+                <button type="submit" class="btn btn-primary">Consultar</button>
+                <button
+                    type="button"
+                    id="refresh-btn"
+                    class="btn btn-secondary"
+                    title="Actualizar pronóstico"
+                >
+                    ↻ Actualizar
+                </button>
+                <button
+                    type="button"
+                    id="geo-btn"
+                    class="btn btn-location"
+                    title="Usar mi ubicación actual"
+                >
+                    ◎ Mi ubicación
+                </button>
+            </form>
+        </section>
+
+        <div id="loading" class="loading hidden" aria-live="polite">
+            <div class="spinner"></div>
+            <p>Buscando información del clima...</p>
+        </div>
+
+        <div id="error-box" class="error-box hidden" role="alert"></div>
+
+        <section id="weather-content" class="weather-content hidden">
+            <article class="current-card">
+                <div class="current-main">
+                    <div class="datos-ciudad">
+                        <p class="titulo-seccion">CONDICIONES ACTUALES</p>
+                        <h2 id="city-name">—</h2>
+                        <p id="resolved-address" class="muted">—</p>
+                        <p id="condition-text" class="condition-badge">—</p>
+                    </div>
+
+                    <div class="temp-box">
+                        <span class="simbolo-temperatura">°</span>
+                        <span id="current-temp" class="temp-value">—°C</span>
+                        <span id="feels-like" class="muted">Sensación: —°C</span>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <span class="icono-metrica">↗</span>
+                        <span class="metric-label">Viento</span>
+                        <strong id="wind-speed" class="metric-value">— km/h</strong>
+                    </div>
+                    <div class="metric-item">
+                        <span class="icono-metrica">☂</span>
+                        <span class="metric-label">Prob. de lluvia</span>
+                        <strong id="rain-prob" class="metric-value">—%</strong>
+                    </div>
+                    <div class="metric-item">
+                        <span class="icono-metrica">◌</span>
+                        <span class="metric-label">Humedad</span>
+                        <strong id="humidity" class="metric-value">—%</strong>
+                    </div>
+                </div>
+            </article>
+
+            <div class="pronosticos">
+                <section class="hourly-section">
+                    <div class="titulo-pronostico">
+                        <span class="punto-hora"></span>
+                        <h3>Últimas 24 horas</h3>
+                    </div>
+                    <div id="past-hours" class="hourly-strip"></div>
+                </section>
+
+                <section class="hourly-section">
+                    <div class="titulo-pronostico">
+                        <span class="punto-hora punto-futuro"></span>
+                        <h3>Próximas 24 horas</h3>
+                    </div>
+                    <div id="next-hours" class="hourly-strip"></div>
+                </section>
+            </div>
+        </section>
+
+        <footer class="pie">
+            Información meteorológica · Visual Crossing
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
